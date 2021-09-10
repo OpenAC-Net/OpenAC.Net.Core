@@ -5,4 +5,4 @@
 
 OpenAC.Net.Core
 =============
-OpenAC.Net.Core - Biblioteca com as principais funções e classes dos componentes OpenAC .Net
+Biblioteca com as principais funções e classes utilizadas pelo Projeto OpenAC
