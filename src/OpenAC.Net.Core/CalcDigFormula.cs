@@ -6,9 +6,9 @@
 // Last Modified By : RFTD
 // Last Modified On : 04-25-2015
 // ***********************************************************************
-// <copyright file="CalcDigFormula.cs" company="Grupo ACBr.Net">
+// <copyright file="CalcDigFormula.cs" company="Projeto OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Grupo ACBr.Net
+//	     		    Copyright (c) 2016 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),

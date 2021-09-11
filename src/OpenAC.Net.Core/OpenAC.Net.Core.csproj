@@ -9,7 +9,7 @@
     <Copyright>Copyright © Projeto OpenAC .Net 2014 - 2021</Copyright>
     <Company>OpenAC .Net - Automação Comercial em .Net</Company>
     <Authors>Projeto OpenAC .Net</Authors>
-    <PackageProjectUrl>https://acbrnet.github.io</PackageProjectUrl>
+    <PackageProjectUrl>https://openac-net.github.io/</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageIconUrl>https://avatars2.githubusercontent.com/u/7342977?v=3&amp;amp;s=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/OpenAC-Net/OpenAC.Net.Core</RepositoryUrl>
