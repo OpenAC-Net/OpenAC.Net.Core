@@ -64,20 +64,14 @@ namespace OpenAC.Net.Core.Logging
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>IOpenLogger.</returns>
-        public IOpenLogger LoggerFor(Type type)
-        {
-            return new NLogLogger(createLoggerInstanceFunc(type.Name));
-        }
+        public IOpenLogger LoggerFor(Type type) => new NLogLogger(createLoggerInstanceFunc(type.Name));
 
         /// <summary>
         /// Loggers for.
         /// </summary>
         /// <param name="keyName">Name of the key.</param>
         /// <returns>IOpenLogger.</returns>
-        public IOpenLogger LoggerFor(string keyName)
-        {
-            return new NLogLogger(createLoggerInstanceFunc(keyName));
-        }
+        public IOpenLogger LoggerFor(string keyName) => new NLogLogger(createLoggerInstanceFunc(keyName));
 
         #endregion ILoggerFactory Members
 

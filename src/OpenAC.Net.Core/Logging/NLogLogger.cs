@@ -263,10 +263,7 @@ namespace OpenAC.Net.Core.Logging
         /// </summary>
         /// <param name="format">The format.</param>
         /// <param name="args">The arguments.</param>
-        public void ErrorFormat(string format, params object[] args)
-        {
-            Error(string.Format(format, args));
-        }
+        public void ErrorFormat(string format, params object[] args) => Error(string.Format(format, args));
 
         /// <summary>
         /// Fatals the specified message.
@@ -315,10 +312,7 @@ namespace OpenAC.Net.Core.Logging
         /// </summary>
         /// <param name="format">The format.</param>
         /// <param name="args">The arguments.</param>
-        public void InfoFormat(string format, params object[] args)
-        {
-            Info(string.Format(format, args));
-        }
+        public void InfoFormat(string format, params object[] args) => Info(string.Format(format, args));
 
         /// <summary>
         /// Warns the specified message.
@@ -346,10 +340,7 @@ namespace OpenAC.Net.Core.Logging
         /// </summary>
         /// <param name="format">The format.</param>
         /// <param name="args">The arguments.</param>
-        public void WarnFormat(string format, params object[] args)
-        {
-            Warn(string.Format(format, args));
-        }
+        public void WarnFormat(string format, params object[] args) => Warn(string.Format(format, args));
 
         #endregion IOpenLogger Methods
 
@@ -413,10 +404,7 @@ namespace OpenAC.Net.Core.Logging
         /// <param name="methodName">Name of the method.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>MethodInfo.</returns>
-        private static MethodInfo GetMethodInfo(string methodName, Type[] parameters)
-        {
-            return LoggerType.GetMethod(methodName, parameters);
-        }
+        private static MethodInfo GetMethodInfo(string methodName, Type[] parameters) => LoggerType.GetMethod(methodName, parameters);
 
         #endregion Private methods
     }

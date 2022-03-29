@@ -92,5 +92,26 @@ namespace OpenAC.Net.Core.Extensions
             other.Position = 0;
             return true;
         }
+
+        public static byte[] ToByteArray(this Stream stream)
+        {
+            var streamLength = Convert.ToInt32(stream.Length);
+            var data = new byte[streamLength + 1];
+
+            //convert to to a byte array
+            stream.Read(data, 0, streamLength);
+
+            return data;
+        }
+
+        public static bool IsNullOrEmpty(this Stream stream)
+        {
+            return stream == null || stream.Length == 0;
+        }
+
+        public static string ToBase64(this Stream stream)
+        {
+            return stream.ToByteArray().ToBase64();
+        }
     }
 }

@@ -67,20 +67,14 @@ namespace OpenAC.Net.Core.Logging
         /// </summary>
         /// <param name="keyName">Name of the key.</param>
         /// <returns>IOpenLogger.</returns>
-		public IOpenLogger LoggerFor(string keyName)
-        {
-            return new Log4NetLogger(GetLoggerByNameDelegate(keyName));
-        }
+		public IOpenLogger LoggerFor(string keyName) => new Log4NetLogger(GetLoggerByNameDelegate(keyName));
 
         /// <summary>
         /// Loggers for.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>IOpenLogger.</returns>
-		public IOpenLogger LoggerFor(Type type)
-        {
-            return new Log4NetLogger(GetLoggerByTypeDelegate(type));
-        }
+		public IOpenLogger LoggerFor(Type type) => new Log4NetLogger(GetLoggerByTypeDelegate(type));
 
         /// <summary>
         /// Gets the get logger method call.

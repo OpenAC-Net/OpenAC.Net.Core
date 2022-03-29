@@ -4,7 +4,7 @@
 // Created          : 04-19-2014
 //
 // Last Modified By : RFTD
-// Last Modified On : 01-30-2015
+// Last Modified On : 27-03-2022
 // ***********************************************************************
 // <copyright file="AssemblyExtenssions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
@@ -28,7 +28,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using System;
+
 using System.IO;
 using System.Reflection;
 
@@ -44,11 +44,6 @@ namespace OpenAC.Net.Core.Extensions
         /// </summary>
         /// <param name="ass">The ass.</param>
         /// <returns>System.String.</returns>
-        public static string GetPath(this Assembly ass)
-        {
-            var uri = new UriBuilder(ass.CodeBase);
-            var path = Uri.UnescapeDataString(uri.Path);
-            return Path.GetDirectoryName(path);
-        }
+        public static string GetPath(this Assembly ass) => Path.GetDirectoryName(ass.Location);
     }
 }

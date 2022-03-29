@@ -86,20 +86,14 @@ namespace OpenAC.Net.Core.Generics
         /// </summary>
         /// <param name="result">The result.</param>
         /// <returns>OperationResult&lt;TResult&gt;.</returns>
-        public static OperationResult<TResult> CreateSuccessResult(TResult result)
-        {
-            return new OperationResult<TResult> { Success = true, Result = result };
-        }
+        public static OperationResult<TResult> CreateSuccessResult(TResult result) => new OperationResult<TResult> { Success = true, Result = result };
 
         /// <summary>
         /// Creates the failure.
         /// </summary>
         /// <param name="failureMessage">The non success message.</param>
         /// <returns>OperationResult&lt;TResult&gt;.</returns>
-        public static OperationResult<TResult> CreateFailure(string failureMessage)
-        {
-            return new OperationResult<TResult> { Success = false, FailureMessage = failureMessage };
-        }
+        public static OperationResult<TResult> CreateFailure(string failureMessage) => new OperationResult<TResult> { Success = false, FailureMessage = failureMessage };
 
         /// <summary>
         /// Creates the failure.
@@ -107,16 +101,13 @@ namespace OpenAC.Net.Core.Generics
         /// <param name="ex">The ex.</param>
         /// <param name="failureMessage"></param>
         /// <returns>OperationResult&lt;TResult&gt;.</returns>
-        public static OperationResult<TResult> CreateFailure(Exception ex, string failureMessage = "")
-        {
-            return new OperationResult<TResult>
+        public static OperationResult<TResult> CreateFailure(Exception ex, string failureMessage = "") =>
+            new OperationResult<TResult>
             {
                 Success = false,
-                FailureMessage = failureMessage.IsEmpty() ? string.Format("{0}{1}{1}{2}", ex.Message, Environment.NewLine, ex.StackTrace) :
-                                                                  failureMessage,
+                FailureMessage = failureMessage.IsEmpty() ? string.Format("{0}{1}{1}{2}", ex.Message, Environment.NewLine, ex.StackTrace) : failureMessage,
                 Exception = ex
             };
-        }
 
         #endregion Methods
     }

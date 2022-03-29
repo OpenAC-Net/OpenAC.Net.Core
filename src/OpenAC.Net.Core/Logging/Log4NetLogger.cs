@@ -243,46 +243,31 @@ namespace OpenAC.Net.Core.Logging
         /// Gets a value indicating whether this instance is error enabled.
         /// </summary>
         /// <value><c>true</c> if this instance is error enabled; otherwise, <c>false</c>.</value>
-		public bool IsErrorEnabled
-        {
-            get { return IsErrorEnabledDelegate(Logger); }
-        }
+		public bool IsErrorEnabled => IsErrorEnabledDelegate(Logger);
 
         /// <summary>
         /// Gets a value indicating whether this instance is fatal enabled.
         /// </summary>
         /// <value><c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.</value>
-		public bool IsFatalEnabled
-        {
-            get { return IsFatalEnabledDelegate(Logger); }
-        }
+		public bool IsFatalEnabled => IsFatalEnabledDelegate(Logger);
 
         /// <summary>
         /// Gets a value indicating whether this instance is debug enabled.
         /// </summary>
         /// <value><c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.</value>
-		public bool IsDebugEnabled
-        {
-            get { return IsDebugEnabledDelegate(Logger); }
-        }
+		public bool IsDebugEnabled => IsDebugEnabledDelegate(Logger);
 
         /// <summary>
         /// Gets a value indicating whether this instance is information enabled.
         /// </summary>
         /// <value><c>true</c> if this instance is information enabled; otherwise, <c>false</c>.</value>
-		public bool IsInfoEnabled
-        {
-            get { return IsInfoEnabledDelegate(Logger); }
-        }
+		public bool IsInfoEnabled => IsInfoEnabledDelegate(Logger);
 
         /// <summary>
         /// Gets a value indicating whether this instance is warn enabled.
         /// </summary>
         /// <value><c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.</value>
-		public bool IsWarnEnabled
-        {
-            get { return IsWarnEnabledDelegate(Logger); }
-        }
+		public bool IsWarnEnabled => IsWarnEnabledDelegate(Logger);
 
         /// <summary>
         /// Errors the specified message.
