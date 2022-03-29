@@ -6,7 +6,7 @@
 // Last Modified By : RFTD
 // Last Modified On : 08-30-2015
 // ***********************************************************************
-// <copyright file="DecimalExtensions.cs" company="OpenAC .Net">
+// <copyright file="EnumerableExtensions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
 //	     		    Copyright (c) 2016 Projeto OpenAC .Net
 //
@@ -71,7 +71,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Faz cast de um ienumerable para outro tipo
+        /// Faz cast de um ienumerable para outro tipo.
         /// </summary>
         /// <param name="lista"></param>
         /// <param name="tipo"></param>
@@ -80,6 +80,18 @@ namespace OpenAC.Net.Core.Extensions
         {
             var method = typeof(Enumerable).GetMethod("Cast").MakeGenericMethod(tipo);
             return (IEnumerable)method.Invoke(null, new object[] { lista });
+        }
+
+        /// <summary>
+        /// Faz cast de um IEnumerable para uma array do tipo especificado.
+        /// </summary>
+        /// <param name="lista"></param>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
+        public static Array ToArray(this IEnumerable lista, Type tipo)
+        {
+            var method = typeof(Enumerable).GetMethod("ToArray").MakeGenericMethod(tipo);
+            return (Array)method.Invoke(null, new object[] { lista });
         }
     }
 }
