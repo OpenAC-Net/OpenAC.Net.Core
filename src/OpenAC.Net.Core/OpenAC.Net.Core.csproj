@@ -6,7 +6,8 @@
     <RootNamespace>OpenAC.Net.Core</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>OpenAC.snk</AssemblyOriginatorKeyFile>
-    <Copyright>Copyright © Projeto OpenAC .Net 2014 - 2021</Copyright>
+    <Authors>Projeto OpenAC .Net</Authors>
+    <Copyright>Copyright © Projeto OpenAC .Net 2014 - 2022</Copyright>
     <Company>OpenAC .Net - Automação Comercial em .Net</Company>
     <Authors>Projeto OpenAC .Net</Authors>
     <PackageProjectUrl>https://openac-net.github.io/</PackageProjectUrl>
@@ -20,15 +21,13 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <AssemblyVersion>1.5.0.0</AssemblyVersion>
     <FileVersion>1.5.0.0</FileVersion>
-    <Version>1.5.0.0-preview.1</Version>
+    <Version>1.5.0.0-preview.2</Version>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
     <IncludeSymbols>true</IncludeSymbols>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageId>OpenAC.Net.Core</PackageId>
-    <PackageIcon></PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
@@ -66,6 +65,10 @@
     <PackageReference Include="Fody" Version="6.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 

@@ -28,6 +28,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using System;
 
 namespace OpenAC.Net.Core
