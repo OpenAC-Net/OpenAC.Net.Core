@@ -35,7 +35,6 @@ using System.Runtime.ConstrainedExecution;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using OpenAC.Net.Core.Logging;
-using ExtraConstraints;
 
 namespace OpenAC.Net.Core.InteropServices
 {
@@ -171,7 +170,7 @@ namespace OpenAC.Net.Core.InteropServices
                 return num;
             }
 
-            public static T LoadFunction<[DelegateConstraint]T>(IntPtr procaddress) where T : class
+            public static T LoadFunction<T>(IntPtr procaddress) where T : Delegate
             {
                 if (procaddress == IntPtr.Zero || procaddress == MinusOne) return null;
                 var functionPointer = Marshal.GetDelegateForFunctionPointer(procaddress, typeof(T));
@@ -265,7 +264,7 @@ namespace OpenAC.Net.Core.InteropServices
         /// </summary>
         /// <param name="functionName">Nome da função para exportar</param>
         /// <typeparam name="T">Delegate da função</typeparam>
-        protected virtual void AddMethod<[DelegateConstraint]T>(string functionName) where T : class
+        protected virtual void AddMethod<T>(string functionName) where T : Delegate
         {
             methodList.Add(typeof(T), functionName);
         }
@@ -276,7 +275,7 @@ namespace OpenAC.Net.Core.InteropServices
         /// <typeparam name="T">Delegate</typeparam>
         /// <returns></returns>
         /// <exception cref="OpenException"></exception>
-        protected virtual T GetMethod<[DelegateConstraint]T>() where T : class
+        protected virtual T GetMethod<T>() where T : Delegate
         {
             if (!methodList.ContainsKey(typeof(T))) throw CreateException($"Função não adicionada para o [{nameof(T)}].");
 
@@ -291,7 +290,7 @@ namespace OpenAC.Net.Core.InteropServices
             var methodHandler = LibLoader.LoadFunction<T>(mHandler);
             this.Log().Debug($"{className} : Método [{method}] carregado.");
 
-            methodCache.Add(method, methodHandler as Delegate);
+            methodCache.Add(method, methodHandler);
             return methodHandler;
         }
 
@@ -303,7 +302,7 @@ namespace OpenAC.Net.Core.InteropServices
         /// <returns></returns>
         /// <exception cref="OpenException"></exception>
         [HandleProcessCorruptedStateExceptions]
-        protected virtual T ExecuteMethod<T>(Func<T> method)
+        protected virtual T ExecuteMethod<T>(Func<T> method) where T : Delegate
         {
             try
             {
@@ -315,6 +314,11 @@ namespace OpenAC.Net.Core.InteropServices
             }
         }
 
+        /// <summary>
+        /// Executa a função e trata erros nativos.
+        /// </summary>
+        /// <param name="method"></param>
+        /// <exception cref="OpenException"></exception>
         [HandleProcessCorruptedStateExceptions]
         protected virtual void ExecuteMethod(Action method)
         {

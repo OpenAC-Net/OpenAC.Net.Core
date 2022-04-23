@@ -84,8 +84,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <returns>System.String.</returns>
         /// <exception cref="OpenException">Erro ao criptografar a string</exception>
         public static string Encrypt<T>(this string value, string password,
-            string salt = "aselrias38490a32", string vector = "8947az34awl34kjq")
-            where T : SymmetricAlgorithm, new()
+            string salt = "aselrias38490a32", string vector = "8947az34awl34kjq") where T : SymmetricAlgorithm, new()
         {
             try
             {
@@ -97,14 +96,16 @@ namespace OpenAC.Net.Core.Extensions
                 byte[] encrypted;
                 using (var cipher = new T())
                 {
-                    if (cipher is DESCryptoServiceProvider)
+                    switch (cipher)
                     {
-                        keysize = 64;
-                    }
+                        case DESCryptoServiceProvider _:
+                            keysize = 64;
+                            break;
 
-                    if (cipher is TripleDESCryptoServiceProvider || cipher is RC2CryptoServiceProvider)
-                    {
-                        keysize = 128;
+                        case TripleDESCryptoServiceProvider _:
+                        case RC2CryptoServiceProvider _:
+                            keysize = 128;
+                            break;
                     }
 
                     var passwordBytes = new Rfc2898DeriveBytes(password, saltBytes, 2);
@@ -112,8 +113,8 @@ namespace OpenAC.Net.Core.Extensions
 
                     cipher.Mode = CipherMode.CBC;
 
-                    using (var encryptor = cipher.CreateEncryptor(keyBytes, vectorBytes))
                     using (var to = new MemoryStream())
+                    using (var encryptor = cipher.CreateEncryptor(keyBytes, vectorBytes))
                     using (var writer = new CryptoStream(to, encryptor, CryptoStreamMode.Write))
                     {
                         writer.Write(valueBytes, 0, valueBytes.Length);
@@ -157,22 +158,24 @@ namespace OpenAC.Net.Core.Extensions
 
                 using (var cipher = new T())
                 {
-                    if (cipher is DESCryptoServiceProvider)
+                    switch (cipher)
                     {
-                        keysize = 64;
-                    }
+                        case DESCryptoServiceProvider _:
+                            keysize = 64;
+                            break;
 
-                    if (cipher is TripleDESCryptoServiceProvider || cipher is RC2CryptoServiceProvider)
-                    {
-                        keysize = 128;
+                        case TripleDESCryptoServiceProvider _:
+                        case RC2CryptoServiceProvider _:
+                            keysize = 128;
+                            break;
                     }
 
                     var passwordBytes = new Rfc2898DeriveBytes(password, saltBytes, 2);
                     var keyBytes = passwordBytes.GetBytes(keysize / 8);
 
                     cipher.Mode = CipherMode.CBC;
-                    using (var decryptor = cipher.CreateDecryptor(keyBytes, vectorBytes))
                     using (var from = new MemoryStream(valueBytes))
+                    using (var decryptor = cipher.CreateDecryptor(keyBytes, vectorBytes))
                     using (var reader = new CryptoStream(from, decryptor, CryptoStreamMode.Read))
                     {
                         decrypted = new byte[valueBytes.Length];
@@ -510,7 +513,7 @@ namespace OpenAC.Net.Core.Extensions
             try
             {
                 if (!DateTime.TryParse(dados, out var converted))
-                    converted = default(DateTime);
+                    converted = default;
 
                 return converted;
             }
@@ -532,7 +535,7 @@ namespace OpenAC.Net.Core.Extensions
             try
             {
                 if (!DateTimeOffset.TryParse(dados, out var converted))
-                    converted = default(DateTimeOffset);
+                    converted = default;
 
                 return converted;
             }
@@ -1743,38 +1746,6 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Formata agência e conta
-        /// </summary>
-        /// <param name="agencia">Código da agência</param>
-        /// <param name="digitoAgencia">Dígito verificador da agência. Pode ser vazio.</param>
-        /// <param name="conta">Código da conta</param>
-        /// <param name="digitoConta">dígito verificador da conta. Pode ser vazio.</param>
-        /// <returns>Agência e conta formatadas</returns>
-        public static string FormataAgenciaConta(this string agencia, string digitoAgencia, string conta, string digitoConta)
-        {
-            try
-            {
-                var agenciaConta = agencia;
-                if (digitoAgencia != string.Empty)
-                {
-                    agenciaConta += "-" + digitoAgencia;
-                }
-
-                agenciaConta += "/" + conta;
-                if (digitoConta != string.Empty)
-                {
-                    agenciaConta += "-" + digitoConta;
-                }
-
-                return agenciaConta;
-            }
-            catch (Exception exception)
-            {
-                throw new OpenException("Erro ao formatar agencia conta", exception);
-            }
-        }
-
-        /// <summary>
         /// Get substring of specified number of characters on the right.
         /// </summary>
         /// <param name="value">The text.</param>
@@ -1783,9 +1754,7 @@ namespace OpenAC.Net.Core.Extensions
         public static string Right(this string value, int length)
         {
             if (length > value.Length)
-            {
                 length = value.Length;
-            }
 
             return value.Substring(value.Length - length);
         }
@@ -2017,6 +1986,42 @@ namespace OpenAC.Net.Core.Extensions
                 (currentCharacter >= '0' && currentCharacter <= '9') ||
                 (currentCharacter >= 'a' && currentCharacter <= 'f') ||
                 (currentCharacter >= 'A' && currentCharacter <= 'F')).All(isHexCharacter => isHexCharacter);
+        }
+
+        /// <summary>
+        /// Quebra o texto em linhas do tamanho informado.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        public static string[] WrapText(this string text, int max)
+        {
+            if (string.IsNullOrEmpty(text))
+                return new[] { text };
+
+            if (max == 0)
+                return new[] { text };
+
+            var charCount = 0;
+            var lines = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            return lines.GroupBy(w => (charCount += (charCount % max + w.Length + 1 >= max
+                    ? max - charCount % max : 0) + w.Length + 1) / max)
+                .Select(g => string.Join(" ", g.ToArray()))
+                .ToArray();
+        }
+
+        /// <summary>
+        /// Limita a string se necessário.
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string LimitarString(this string txt, int length)
+        {
+            if (txt.IsEmpty())
+                return string.Empty;
+
+            return txt.Length < length ? txt : txt.Substring(0, length);
         }
 
         #endregion Methods

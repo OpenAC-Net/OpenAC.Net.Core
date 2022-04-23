@@ -57,15 +57,15 @@ namespace OpenAC.Net.Core.Generics
             foreach (var fi in GetType().GetFields())
             {
                 //We query if the fiels support the ICloneable interface.
-                var ICloneType = fi.FieldType.GetInterface("ICloneable", true);
+                var cloneType = fi.FieldType.GetInterface("ICloneable", true);
 
-                if (ICloneType != null)
+                if (cloneType != null)
                 {
                     //Getting the ICloneable interface from the object.
-                    var IClone = (ICloneable)fi.GetValue(this);
+                    var clone = (ICloneable)fi.GetValue(this);
 
                     //We use the clone method to set the new value to the field.
-                    fields[i].SetValue(newObject, IClone.Clone());
+                    fields[i].SetValue(newObject, clone.Clone());
                 }
                 else
                 {
@@ -78,30 +78,30 @@ namespace OpenAC.Net.Core.Generics
                 //IEnumerable interface, so if it does
                 //we need to enumerate all its items and check if
                 //they support the ICloneable interface.
-                var IEnumerableType = fi.FieldType.GetInterface("IEnumerable", true);
-                if (IEnumerableType != null)
+                var enumerableType = fi.FieldType.GetInterface("IEnumerable", true);
+                if (enumerableType != null)
                 {
                     //Get the IEnumerable interface from the field.
-                    var IEnum = (IEnumerable)fi.GetValue(this);
+                    var value = (IEnumerable)fi.GetValue(this);
 
                     //This version support the IList and the
                     //IDictionary interfaces to iterate on collections.
-                    var IListType = fields[i].FieldType.GetInterface("IList", true);
-                    var IDicType = fields[i].FieldType.GetInterface("IDictionary", true);
+                    var listType = fields[i].FieldType.GetInterface("IList", true);
+                    var dicType = fields[i].FieldType.GetInterface("IDictionary", true);
 
                     var j = 0;
-                    if (IListType != null)
+                    if (listType != null)
                     {
                         //Getting the IList interface.
                         var list = (IList)fields[i].GetValue(newObject);
 
-                        foreach (var obj in IEnum)
+                        foreach (var obj in value)
                         {
                             //Checking to see if the current item
                             //support the ICloneable interface.
-                            ICloneType = obj.GetType().GetInterface("ICloneable", true);
+                            cloneType = obj.GetType().GetInterface("ICloneable", true);
 
-                            if (ICloneType != null)
+                            if (cloneType != null)
                             {
                                 //If it does support the ICloneable interface,
                                 //we use it to set the clone of
@@ -120,19 +120,19 @@ namespace OpenAC.Net.Core.Generics
                             j++;
                         }
                     }
-                    else if (IDicType != null)
+                    else if (dicType != null)
                     {
                         //Getting the dictionary interface.
                         var dic = (IDictionary)fields[i].GetValue(newObject);
                         j = 0;
 
-                        foreach (DictionaryEntry de in IEnum)
+                        foreach (DictionaryEntry de in value)
                         {
                             //Checking to see if the item
                             //support the ICloneable interface.
-                            ICloneType = de.Value.GetType().GetInterface("ICloneable", true);
+                            cloneType = de.Value.GetType().GetInterface("ICloneable", true);
 
-                            if (ICloneType != null)
+                            if (cloneType != null)
                             {
                                 var clone = (ICloneable)de.Value;
 
