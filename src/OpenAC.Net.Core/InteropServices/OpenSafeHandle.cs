@@ -289,7 +289,7 @@ namespace OpenAC.Net.Core.InteropServices
         /// <returns></returns>
         /// <exception cref="OpenException"></exception>
         [HandleProcessCorruptedStateExceptions]
-        protected virtual T ExecuteMethod<T>(Func<T> method) where T : Delegate
+        protected virtual T ExecuteMethod<T>(Func<T> method)
         {
             try
             {
