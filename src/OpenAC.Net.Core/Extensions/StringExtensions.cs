@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="StringExtensions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -205,19 +205,17 @@ namespace OpenAC.Net.Core.Extensions
             try
             {
                 // Primeiro passo, calcular o MD5 hash a partir da string
-                using (var md5 = MD5.Create())
-                {
-                    var inputBytes = Encoding.UTF8.GetBytes(input);
-                    var hash = md5.ComputeHash(inputBytes);
+                using var md5 = MD5.Create();
+                var inputBytes = Encoding.UTF8.GetBytes(input);
+                var hash = md5.ComputeHash(inputBytes);
 
-                    // Segundo passo, converter o array de bytes em uma string hexadecimal
-                    var sb = new StringBuilder();
-                    foreach (var t in hash)
-                    {
-                        sb.Append(t.ToString("x2"));
-                    }
-                    return sb.ToString();
+                // Segundo passo, converter o array de bytes em uma string hexadecimal
+                var sb = new StringBuilder();
+                foreach (var t in hash)
+                {
+                    sb.Append(t.ToString("x2"));
                 }
+                return sb.ToString();
             }
             catch (Exception ex)
             {
@@ -236,18 +234,16 @@ namespace OpenAC.Net.Core.Extensions
         {
             try
             {
-                using (var sha = SHA1.Create())
-                {
-                    var data = Encoding.UTF8.GetBytes(input);
-                    var hash = sha.ComputeHash(data);
+                using var sha = SHA1.Create();
+                var data = Encoding.UTF8.GetBytes(input);
+                var hash = sha.ComputeHash(data);
 
-                    var sb = new StringBuilder();
-                    foreach (var t in hash)
-                    {
-                        sb.Append(t.ToString("X2"));
-                    }
-                    return sb.ToString();
+                var sb = new StringBuilder();
+                foreach (var t in hash)
+                {
+                    sb.Append(t.ToString("X2"));
                 }
+                return sb.ToString();
             }
             catch (Exception ex)
             {
@@ -1766,7 +1762,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <returns>DateTime.</returns>
         public static DateTime FromJulianDate(this string julianDate)
         {
-            if (julianDate.Length < 1 || julianDate.Length > 5) return default(DateTime);
+            if (julianDate.Length < 1 || julianDate.Length > 5) return default;
 
             var ano = 2000 + int.Parse(julianDate.Substring(0, 2));
             var dias = int.Parse(julianDate.Substring(2));

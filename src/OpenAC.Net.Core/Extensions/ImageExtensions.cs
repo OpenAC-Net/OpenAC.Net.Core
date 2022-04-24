@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="ImageExtensions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -30,6 +30,7 @@
 // ***********************************************************************
 
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -51,16 +52,11 @@ namespace OpenAC.Net.Core.Extensions
         {
             if (imageIn == null) return null;
 
-            if (format == null)
-            {
-                format = imageIn.RawFormat;
-            }
+            format ??= imageIn.RawFormat;
 
-            using (var ms = new MemoryStream())
-            {
-                imageIn.Save(ms, format);
-                return ms.ToArray();
-            }
+            using var ms = new MemoryStream();
+            imageIn.Save(ms, format);
+            return ms.ToArray();
         }
 
         /// <summary>
@@ -86,10 +82,7 @@ namespace OpenAC.Net.Core.Extensions
         {
             if (imageIn == null) return null;
 
-            if (format == null)
-            {
-                format = imageIn.RawFormat;
-            }
+            format ??= imageIn.RawFormat;
 
             var ms = new MemoryStream();
             imageIn.Save(ms, format);
@@ -108,10 +101,7 @@ namespace OpenAC.Net.Core.Extensions
         {
             if (imageIn == null) return null;
 
-            if (format == null)
-            {
-                format = imageIn.RawFormat;
-            }
+            format ??= imageIn.RawFormat;
 
             var ms = new FileStream(fileName, FileMode.CreateNew, FileAccess.ReadWrite);
             imageIn.Save(ms, format);
@@ -152,6 +142,34 @@ namespace OpenAC.Net.Core.Extensions
 
             ep.Param[0] = new EncoderParameter(enc, (long)EncoderValue.Flush);
             image.SaveAdd(ep);
+        }
+
+        /// <summary>
+        /// Resize the image to the specified width and height.
+        /// </summary>
+        /// <param name="image">The image to resize.</param>
+        /// <param name="width">The width to resize to.</param>
+        /// <param name="height">The height to resize to.</param>
+        /// <returns>The resized image.</returns>
+        public static Image ResizeImage(this Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using var graphics = Graphics.FromImage(destImage);
+            graphics.CompositingMode = CompositingMode.SourceCopy;
+            graphics.CompositingQuality = CompositingQuality.HighQuality;
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphics.SmoothingMode = SmoothingMode.HighQuality;
+            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+            using var wrapMode = new ImageAttributes();
+            wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+            graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+
+            return destImage;
         }
     }
 }

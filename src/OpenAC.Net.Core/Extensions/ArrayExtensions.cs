@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="ArrayExtensions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2014 - 2017 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -38,12 +38,11 @@ namespace OpenAC.Net.Core.Extensions
     /// </summary>
     public static class ArrayExtensions
     {
-        /// <summary>Indicates whether the specified array is null or has a length of zero.</summary>
+        /// <summary>
+        /// Indicates whether the specified array is null or has a length of zero.
+        /// </summary>
         /// <param name="array">The array to test.</param>
         /// <returns>true if the array parameter is null or has a length of zero; otherwise, false.</returns>
-        public static bool IsNullOrEmpty(this Array array)
-        {
-            return (array == null || array.Length == 0);
-        }
+        public static bool IsNullOrEmpty(this Array array) => (array == null || array.Length == 0);
     }
 }

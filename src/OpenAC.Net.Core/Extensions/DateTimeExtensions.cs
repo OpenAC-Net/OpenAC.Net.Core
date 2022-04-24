@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="DateTimeExtensions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -28,6 +28,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using System;
 
 namespace OpenAC.Net.Core.Extensions
@@ -42,10 +43,7 @@ namespace OpenAC.Net.Core.Extensions
         /// </summary>
         /// <param name="dtNascimento">The dt nascimento.</param>
         /// <returns>System.Int32.</returns>
-        public static int GetIdade(this DateTime dtNascimento)
-        {
-            return ((DateTime?)dtNascimento).GetIdade();
-        }
+        public static int GetIdade(this DateTime dtNascimento) => ((DateTime?)dtNascimento).GetIdade();
 
         /// <summary>
         /// Gets the idade.
@@ -102,7 +100,7 @@ namespace OpenAC.Net.Core.Extensions
 
             if (dAtual.Month < dtNascimento.Value.Month)
             {
-                idMeses = idMeses + 12;
+                idMeses += 12;
                 idAnos = -1;
             }
 
@@ -110,20 +108,26 @@ namespace OpenAC.Net.Core.Extensions
             idMeses = dAtual.Month - dtNascimento.Value.Month + idMeses;
             idAnos = dAtual.Year - dtNascimento.Value.Year + idAnos;
 
-            if (idAnos > 1)
-                ta = idAnos + " anos ";
-            else if (idAnos == 1)
-                ta = idAnos + "ano";
+            ta = idAnos switch
+            {
+                > 1 => idAnos + " anos ",
+                1 => idAnos + "ano",
+                _ => ta
+            };
 
-            if (idMeses > 1)
-                tm = idMeses + " meses ";
-            else if (idMeses == 1)
-                tm = idMeses + " mês ";
+            tm = idMeses switch
+            {
+                > 1 => idMeses + " meses ",
+                1 => idMeses + " mês ",
+                _ => tm
+            };
 
-            if (idDias > 1)
-                td = idDias + " dias ";
-            else if (idDias == 1)
-                td = idDias + " dia ";
+            td = idDias switch
+            {
+                > 1 => idDias + " dias ",
+                1 => idDias + " dia ",
+                _ => td
+            };
 
             return ta + tm + td;
         }
@@ -144,9 +148,6 @@ namespace OpenAC.Net.Core.Extensions
         /// </summary>
         /// <param name="data">The data.</param>
         /// <returns>System.String.</returns>
-        public static string ToJulianDate(this DateTime data)
-        {
-            return $"{data:yy}{data.DayOfYear:D3}";
-        }
+        public static string ToJulianDate(this DateTime data) => $"{data:yy}{data.DayOfYear:D3}";
     }
 }

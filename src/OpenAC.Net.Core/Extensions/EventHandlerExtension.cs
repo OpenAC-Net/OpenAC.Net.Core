@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="EventHandlerExtension.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -61,23 +61,23 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Chama o evento com os argumentos passado.
-        /// Passando null para o sender.
+        /// Chama o evento.
         /// </summary>
         /// <param name="eventHandler">The event handler.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        public static void Raise(this EventHandler eventHandler, EventArgs e)
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The e.</param>
+        public static void Raise(this PropertyChangedEventHandler eventHandler, object sender, PropertyChangedEventArgs e)
         {
             if (eventHandler == null)
                 return;
 
             if (eventHandler.Target is ISynchronizeInvoke synchronizeInvoke && synchronizeInvoke.InvokeRequired)
             {
-                synchronizeInvoke.Invoke(eventHandler, new[] { null, e });
+                synchronizeInvoke.Invoke(eventHandler, new[] { sender, e });
             }
             else
             {
-                eventHandler.DynamicInvoke(null, e);
+                eventHandler.DynamicInvoke(sender, e);
             }
         }
 
@@ -87,7 +87,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <param name="eventHandler">The event handler.</param>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The e.</param>
-        public static void Raise(this PropertyChangedEventHandler eventHandler, object sender, PropertyChangedEventArgs e)
+        public static void Raise(this PropertyChangingEventHandler eventHandler, object sender, PropertyChangingEventArgs e)
         {
             if (eventHandler == null)
                 return;
@@ -125,28 +125,6 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Chama o evento com os argumentos passado.
-        /// Passando null para o sender.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="eventHandler">The event handler.</param>
-        /// <param name="e">Argumentos do evento.</param>
-        public static void Raise<T>(this EventHandler<T> eventHandler, T e) where T : EventArgs
-        {
-            if (eventHandler == null)
-                return;
-
-            if (eventHandler.Target is ISynchronizeInvoke synchronizeInvoke && synchronizeInvoke.InvokeRequired)
-            {
-                synchronizeInvoke.Invoke(eventHandler, new[] { null, e });
-            }
-            else
-            {
-                eventHandler.DynamicInvoke(null, e);
-            }
-        }
-
-        /// <summary>
         /// Chama o evento.
         /// </summary>
         /// <param name="eventHandler">The event handler.</param>
@@ -169,27 +147,6 @@ namespace OpenAC.Net.Core.Extensions
 
         /// <summary>
         /// Chama o evento.
-        /// Passando null para o sender e EventArgs.Empty
-        /// </summary>
-        /// <param name="eventHandler">The event handler.</param>
-        public static void Raise(this EventHandler<EventArgs> eventHandler)
-        {
-            if (eventHandler == null)
-                return;
-
-            var e = EventArgs.Empty;
-            if (eventHandler.Target is ISynchronizeInvoke synchronizeInvoke && synchronizeInvoke.InvokeRequired)
-            {
-                synchronizeInvoke.Invoke(eventHandler, new[] { null, e });
-            }
-            else
-            {
-                eventHandler.DynamicInvoke(null, e);
-            }
-        }
-
-        /// <summary>
-        /// Chama o evento.
         /// </summary>
         /// <param name="eventHandler">The event handler.</param>
         /// <param name="sender">The sender.</param>
@@ -206,27 +163,6 @@ namespace OpenAC.Net.Core.Extensions
             else
             {
                 eventHandler.DynamicInvoke(sender, e);
-            }
-        }
-
-        /// <summary>
-        /// Chama o evento.
-        /// Passando null para o sender e EventArgs.Empty
-        /// </summary>
-        /// <param name="eventHandler">The event handler.</param>
-        public static void Raise(this EventHandler eventHandler)
-        {
-            if (eventHandler == null)
-                return;
-
-            var e = EventArgs.Empty;
-            if (eventHandler.Target is ISynchronizeInvoke synchronizeInvoke && synchronizeInvoke.InvokeRequired)
-            {
-                synchronizeInvoke.Invoke(eventHandler, new[] { null, e });
-            }
-            else
-            {
-                eventHandler.DynamicInvoke(null, e);
             }
         }
     }

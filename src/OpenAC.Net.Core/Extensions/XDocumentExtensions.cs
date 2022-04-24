@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="XDocumentExtensions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -55,18 +55,16 @@ namespace OpenAC.Net.Core.Extensions
                 NamespaceHandling = NamespaceHandling.OmitDuplicates
             };
 
-            using (var xmlString = new OpenStringWriter(encode))
-            using (var xmlTextWriter = XmlWriter.Create(xmlString, settings))
-            {
-                document.WriteTo(xmlTextWriter);
-                xmlTextWriter.Flush();
-                return xmlString.ToString();
-            }
+            using var xmlString = new OpenStringWriter(encode);
+            using var xmlTextWriter = XmlWriter.Create(xmlString, settings);
+            document.WriteTo(xmlTextWriter);
+            xmlTextWriter.Flush();
+            return xmlString.ToString();
         }
 
         public static TType GetValue<TType>(this XElement element, IFormatProvider format = null)
         {
-            if (element == null) return default(TType);
+            if (element == null) return default;
 
             TType ret;
             try
@@ -77,7 +75,7 @@ namespace OpenAC.Net.Core.Extensions
             }
             catch (Exception)
             {
-                ret = default(TType);
+                ret = default;
             }
 
             return ret;
@@ -125,12 +123,10 @@ namespace OpenAC.Net.Core.Extensions
 
         public static XmlDocument ToXmlDocument(this XDocument document)
         {
-            using (var reader = document.CreateReader())
-            {
-                var xmlDocument = new XmlDocument();
-                xmlDocument.Load(reader);
-                return xmlDocument;
-            }
+            using var reader = document.CreateReader();
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(reader);
+            return xmlDocument;
         }
     }
 }

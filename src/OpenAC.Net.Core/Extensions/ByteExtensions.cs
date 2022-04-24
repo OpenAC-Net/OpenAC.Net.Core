@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="AssemblyExtenssions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -30,13 +30,8 @@
 // ***********************************************************************
 
 using System;
-
-#if NETFULL
-
 using System.IO;
 using System.Drawing;
-
-#endif
 
 namespace OpenAC.Net.Core.Extensions
 {
@@ -56,8 +51,6 @@ namespace OpenAC.Net.Core.Extensions
             return Convert.ToBase64String(byteArrayIn);
         }
 
-#if NETFULL
-
         /// <summary>
         /// To the image.
         /// </summary>
@@ -67,13 +60,25 @@ namespace OpenAC.Net.Core.Extensions
         {
             if (byteArrayIn == null) return null;
 
-            using (var ms = new MemoryStream(byteArrayIn))
-            {
-                var returnImage = Image.FromStream(ms);
-                return returnImage;
-            }
+            using var ms = new MemoryStream(byteArrayIn);
+            var returnImage = Image.FromStream(ms);
+            return returnImage;
         }
 
-#endif
+        /// <summary>
+        /// Checa se o byte na posição informada é 1.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="idx"></param>
+        /// <returns></returns>
+        public static bool IsBitOn(this byte value, int idx) => ((value >> idx) & 1) == 1;
+
+        /// <summary>
+        /// Checa se o byte na posição informada é 0.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="idx"></param>
+        /// <returns></returns>
+        public static bool IsBitOff(this byte value, int idx) => !IsBitOn(value, idx);
     }
 }

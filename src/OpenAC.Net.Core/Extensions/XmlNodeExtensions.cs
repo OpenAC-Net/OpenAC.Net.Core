@@ -41,13 +41,11 @@ namespace OpenAC.Net.Core.Extensions
                 NamespaceHandling = NamespaceHandling.OmitDuplicates
             };
 
-            using (var xmlString = new OpenStringWriter(encode))
-            using (var xmlTextWriter = XmlWriter.Create(xmlString, settings))
-            {
-                xmlDoc.WriteTo(xmlTextWriter);
-                xmlTextWriter.Flush();
-                return xmlString.ToString();
-            }
+            using var xmlString = new OpenStringWriter(encode);
+            using var xmlTextWriter = XmlWriter.Create(xmlString, settings);
+            xmlDoc.WriteTo(xmlTextWriter);
+            xmlTextWriter.Flush();
+            return xmlString.ToString();
         }
 
         /// <summary>
@@ -74,7 +72,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <returns>T.</returns>
         public static TType GetValue<TType>(this XmlNode element, IFormatProvider format = null)
         {
-            if (element == null) return default(TType);
+            if (element == null) return default;
 
             TType ret;
             try
@@ -85,7 +83,7 @@ namespace OpenAC.Net.Core.Extensions
             }
             catch (Exception)
             {
-                ret = default(TType);
+                ret = default;
             }
 
             return ret;

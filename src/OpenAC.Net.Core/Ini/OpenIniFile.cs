@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="OpenIniFile.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -138,7 +138,7 @@ namespace OpenAC.Net.Core
             sections.Remove(section);
         }
 
-        public TType Read<TType>(string section, string propertie, TType defaultValue = default(TType), IFormatProvider format = null)
+        public TType Read<TType>(string section, string propertie, TType defaultValue = default, IFormatProvider format = null)
         {
             if (propertie.IsEmpty()) return defaultValue;
             if (section.IsEmpty()) return defaultValue;
@@ -160,22 +160,20 @@ namespace OpenAC.Net.Core
         {
             var file = Path.Combine(IniFilePath, IniFileName);
 
-            using (var writer = new StreamWriter(file, false, Encoding, 1024))
+            using var writer = new StreamWriter(file, false, Encoding, 1024);
+            foreach (var section in sections)
             {
-                foreach (var section in sections)
+                writer.WriteLine($"[{section.Name}]");
+
+                foreach (var iniData in section)
                 {
-                    writer.WriteLine($"[{section.Name}]");
-
-                    foreach (var iniData in section)
-                    {
-                        writer.WriteLine($"{iniData.Key}={iniData.Value}");
-                    }
-
-                    writer.WriteLine("");
+                    writer.WriteLine($"{iniData.Key}={iniData.Value}");
                 }
 
-                writer.Flush();
+                writer.WriteLine("");
             }
+
+            writer.Flush();
         }
 
         public static OpenIniFile Load(string file, Encoding encoding = null)
@@ -201,30 +199,28 @@ namespace OpenAC.Net.Core
             encoding = encoding ?? OpenEncoding.ISO88591;
             var iniFile = new OpenIniFile { Encoding = encoding };
 
-            using (var reader = new StreamReader(stream, iniFile.Encoding))
+            using var reader = new StreamReader(stream, iniFile.Encoding);
+            string line;
+            var section = string.Empty;
+            while ((line = reader.ReadLine()) != null)
             {
-                string line;
-                var section = string.Empty;
-                while ((line = reader.ReadLine()) != null)
+                line = line.Trim();
+
+                if (line.IsEmpty()) continue;
+                if (line.StartsWith(";")) continue;
+
+                if (line.StartsWith("["))
                 {
-                    line = line.Trim();
+                    section = line.Substring(1, line.Length - 2);
+                    iniFile.sections.Add(new OpenIniSection(iniFile, section));
+                }
+                else
+                {
+                    if (section.IsEmpty()) continue;
 
-                    if (line.IsEmpty()) continue;
-                    if (line.StartsWith(";")) continue;
-
-                    if (line.StartsWith("["))
-                    {
-                        section = line.Substring(1, line.Length - 2);
-                        iniFile.sections.Add(new OpenIniSection(iniFile, section));
-                    }
-                    else
-                    {
-                        if (section.IsEmpty()) continue;
-
-                        var iniSection = iniFile[section];
-                        var properties = line.Split('=');
-                        iniSection.Add(properties[0], properties[1]);
-                    }
+                    var iniSection = iniFile[section];
+                    var properties = line.Split('=');
+                    iniSection.Add(properties[0], properties[1]);
                 }
             }
 

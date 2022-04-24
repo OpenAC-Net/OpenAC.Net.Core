@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="EnumExtension.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -89,7 +89,7 @@ namespace OpenAC.Net.Core.Extensions
         {
             Guard.Against<OpenException>(valores.Length != retornos.Length, "O quantidade de valores e retornos são diferentes");
             var idx = Array.IndexOf(valores, valor);
-            return idx < 0 ? default(T) : retornos[idx];
+            return idx < 0 ? default : retornos[idx];
         }
     }
 }

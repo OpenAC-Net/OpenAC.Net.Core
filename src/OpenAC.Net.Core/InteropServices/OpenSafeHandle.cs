@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="OpenSafeHandle.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -193,46 +193,33 @@ namespace OpenAC.Net.Core.InteropServices
 
         #region Constructors
 
-        static OpenSafeHandle()
-        {
-            MinusOne = new IntPtr(-1);
-        }
+        static OpenSafeHandle() => MinusOne = new IntPtr(-1);
 
         /// <inheritdoc />
-        protected OpenSafeHandle(string dllPath)
-            : base(IntPtr.Zero, true)
+        protected OpenSafeHandle(string dllPath) : base(IsWindows ? IntPtr.Zero : MinusOne, true)
         {
             methodList = new Dictionary<Type, string>();
             methodCache = new Dictionary<string, Delegate>();
             className = GetType().Name;
 
             var pNewSession = LibLoader.LoadLibrary(dllPath);
-            Guard.Against<OpenException>(pNewSession == IntPtr.Zero, "Não foi possivel carregar a biblioteca.");
             SetHandle(pNewSession);
+            Guard.Against<OpenException>(IsInvalid, "Não foi possivel carregar a biblioteca.");
         }
 
         #endregion Constructors
 
         #region Properties
 
+        private static IntPtr MinusOne { get; }
+
         /// <summary>
-        ///
+        /// Retornar o valor de um handler invalido.
         /// </summary>
-        public static IntPtr MinusOne { get; }
+        protected IntPtr InvalidHandler => IsWindows ? IntPtr.Zero : MinusOne;
 
         /// <inheritdoc />
-        public override bool IsInvalid
-        {
-            get
-            {
-                if (handle != IntPtr.Zero)
-                {
-                    return (handle == MinusOne);
-                }
-
-                return true;
-            }
-        }
+        public override sealed bool IsInvalid => InvalidHandler == handle;
 
         public static bool IsWindows => LibLoader.IsWindows;
 

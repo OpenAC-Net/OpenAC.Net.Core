@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="XmlDocumentExtensions.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2016 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -43,10 +43,8 @@ namespace OpenAC.Net.Core.Extensions
 
         public static XDocument ToXDocument(this XmlDocument document, LoadOptions options)
         {
-            using (var reader = new XmlNodeReader(document))
-            {
-                return XDocument.Load(reader, options);
-            }
+            using var reader = new XmlNodeReader(document);
+            return XDocument.Load(reader, options);
         }
     }
 }
