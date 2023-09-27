@@ -73,12 +73,12 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Determina se um evento esta setado ou n„o
+        /// Determina se um evento esta setado ou n√£o
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="classe">Classe</param>
         /// <param name="evento">Nome do evento</param>
-        /// <returns><c>true</c> se o evento foi setado, <c>false</c> Sen„o.</returns>
+        /// <returns><c>true</c> se o evento foi setado, <c>false</c> Sen√£o.</returns>
         public static bool EventAssigned<T>(this T classe, string evento) where T : class
         {
             var fieldInfo = typeof(T).GetField(evento, BindingFlags.NonPublic | BindingFlags.Instance);
@@ -92,8 +92,8 @@ namespace OpenAC.Net.Core.Extensions
         /// Dispara <exception cref="System.ArgumentNullException">ArgumentNullException</exception> se o objeto for nulo.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="data">O item para checar se È nulo.</param>
-        /// <param name="name">O nome para lanÁar se na exception, se necess·rio</param>
+        /// <param name="data">O item para checar se √© nulo.</param>
+        /// <param name="name">O nome para lan√ßar se na exception, se necess√°rio</param>
         /// <exception cref="System.ArgumentNullException"></exception>
         public static void ThrowIfNull<T>(this T data, string name) where T : IComparable<T>
         {
@@ -104,7 +104,7 @@ namespace OpenAC.Net.Core.Extensions
         /// Dispara <exception cref="System.ArgumentNullException">ArgumentNullException</exception> se o objeto for nulo.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="data">O item para checar se È nulo.</param>
+        /// <param name="data">O item para checar se √© nulo.</param>
         /// <exception cref="System.ArgumentNullException"></exception>
         public static void ThrowIfNull<T>(this T data) where T : IComparable<T>
         {
@@ -112,7 +112,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Determina se o valor È nulo ou n„o.
+        /// Determina se o valor √© nulo ou n√£o.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value">O valor.</param>
@@ -127,9 +127,9 @@ namespace OpenAC.Net.Core.Extensions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj">O valor.</param>
-        /// <param name="low">O mÌnimo.</param>
-        /// <param name="high">O m·ximo.</param>
-        /// <returns><c>true</c> se valor estiver entre o mÌnimo e o m·ximo, <c>false</c> se n„o.</returns>
+        /// <param name="low">O m√≠nimo.</param>
+        /// <param name="high">O m√°ximo.</param>
+        /// <returns><c>true</c> se valor estiver entre o m√≠nimo e o m√°ximo, <c>false</c> se n√£o.</returns>
         public static bool IsBetween<T>(this T obj, T low, T high) where T : IComparable<T>
         {
             return obj.CompareTo(low) >= 0 && obj.CompareTo(high) <= 0;

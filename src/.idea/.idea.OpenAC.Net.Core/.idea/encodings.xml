@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise">
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/CalcDigito.cs" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/ArrayExtensions.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/ByteExtensions.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/DateTimeExtensions.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/DecimalExtensions.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/EnumExtension.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/ObjectExtension.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/StringExtensions.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Extensions/X509Certificate2Extensions.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Generics/GenericClone.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Ini/OpenIniFile.cs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OpenAC.Net.Core/Txt/TxtFieldAttribute.cs" charset="UTF-8" />
+  </component>
+</project>

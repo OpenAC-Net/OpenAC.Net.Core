@@ -33,7 +33,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 
-#if NETFULL
+#if NETFRAMEWORK
 
 using System.Management;
 

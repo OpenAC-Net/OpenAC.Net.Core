@@ -113,7 +113,7 @@ namespace OpenAC.Net.Core
         /// </summary>
         public void Calcular()
         {
-            Guard.Against<ArgumentException>(Documento.IsEmpty(), "Documento n„o informado.");
+            Guard.Against<ArgumentException>(Documento.IsEmpty(), "Documento n√£o informado.");
 
             Documento = Documento.OnlyNumbers();
             SomaDigitos = 0;

@@ -34,7 +34,7 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
 
-#if NETFULL
+#if NETFRAMEWORK
 
 using System.Runtime.InteropServices;
 using System.Security;
@@ -46,11 +46,11 @@ using System.Security.Cryptography;
 namespace OpenAC.Net.Core.Extensions
 {
     /// <summary>
-    /// Extensıes para Certificados
+    /// Extens√µes para Certificados
     /// </summary>
     public static class X509Certificate2Extensions
     {
-#if NETFULL
+#if NETFRAMEWORK
 
         #region Fields
 
@@ -114,12 +114,12 @@ namespace OpenAC.Net.Core.Extensions
             return dataExpiracao <= DateTime.Now;
         }
 
-#if NETFULL
+#if NETFRAMEWORK
 
         /// <summary>
         /// Retorna true se o certificado for do tipo A3.
         /// </summary>
-        /// <param name="certificado">Certificado que dever· ser validado se È A3 ou n„o.</param>
+        /// <param name="certificado">Certificado que dever√° ser validado se √© A3 ou n√£o.</param>
         /// <returns></returns>
         public static bool IsA3(this X509Certificate2 certificado)
         {
@@ -177,7 +177,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// ForÁa a liberaÁ„o de certificado A3.
+        /// For√ßa a libera√ß√£o de certificado A3.
         /// </summary>
         /// <param name="certificado"></param>
         public static void ForceUnload(this X509Certificate2 certificado)

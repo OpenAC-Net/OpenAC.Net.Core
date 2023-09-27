@@ -118,7 +118,7 @@ namespace OpenAC.Net.Core.Extensions
             tm = idMeses switch
             {
                 > 1 => idMeses + " meses ",
-                1 => idMeses + " mês ",
+                1 => idMeses + " mÃªs ",
                 _ => tm
             };
 

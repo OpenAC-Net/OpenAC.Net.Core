@@ -8,7 +8,7 @@
 // ***********************************************************************
 // <copyright file="GenericClone.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
-//	     		    Copyright (c) 2014 - 2022 Projeto OpenAC .Net
+//	     		    Copyright (c) 2014 - 2023 Projeto OpenAC .Net
 //
 //	 Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the "Software"),
@@ -35,7 +35,7 @@ using System.Collections;
 namespace OpenAC.Net.Core.Generics
 {
     /// <summary>
-    /// Classe GenericClone implementação generica da interface ICloneable.
+    /// Classe GenericClone implementaÃ§Ã£o generica da interface ICloneable.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class GenericClone<T> : ICloneable where T : class

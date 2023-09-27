@@ -41,7 +41,7 @@ namespace OpenAC.Net.Core.Extensions
     public static class EnumExtension
     {
         /// <summary>
-        /// Retorna a descriÁ„o do enum de acordo com o atributo DescriptionAttribute.
+        /// Retorna a descri√ß√£o do enum de acordo com o atributo DescriptionAttribute.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value">The value.</param>
@@ -50,7 +50,7 @@ namespace OpenAC.Net.Core.Extensions
         {
             var type = typeof(T);
             Guard.Against<InvalidOperationException>(!type.IsEnum, "O tipo de parametro T precisa ser um enum.");
-            Guard.Against<InvalidOperationException>(!Enum.IsDefined(type, value), $"{type} o valor {value} n„o esta definido no enum.");
+            Guard.Against<InvalidOperationException>(!Enum.IsDefined(type, value), $"{type} o valor {value} n√£o esta definido no enum.");
 
             var fi = type.GetField(value.ToString(), BindingFlags.Static | BindingFlags.Public);
             if (fi == null) return string.Empty;
@@ -60,7 +60,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Retorna a descriÁ„o do enum de acordo com a lista informada.
+        /// Retorna a descri√ß√£o do enum de acordo com a lista informada.
         /// </summary>
         /// <param name="valor"></param>
         /// <param name="valores"></param>
@@ -71,7 +71,7 @@ namespace OpenAC.Net.Core.Extensions
         {
             var type = typeof(T);
             Guard.Against<InvalidOperationException>(!type.IsEnum, "O tipo de parametro T precisa ser um enum.");
-            Guard.Against<OpenException>(valores.Length != retornos.Length, "O quantidade de valores e retornos s„o diferentes");
+            Guard.Against<OpenException>(valores.Length != retornos.Length, "O quantidade de valores e retornos s√£o diferentes");
 
             var idx = Array.IndexOf(valores, valor);
             return idx < 0 ? string.Empty : retornos[idx];
@@ -87,7 +87,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <returns></returns>
         public static T ToEnum<T>(this string valor, string[] valores, T[] retornos) where T : struct
         {
-            Guard.Against<OpenException>(valores.Length != retornos.Length, "O quantidade de valores e retornos s„o diferentes");
+            Guard.Against<OpenException>(valores.Length != retornos.Length, "O quantidade de valores e retornos s√£o diferentes");
             var idx = Array.IndexOf(valores, valor);
             return idx < 0 ? default : retornos[idx];
         }

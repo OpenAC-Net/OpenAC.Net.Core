@@ -66,7 +66,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Checa se o byte na posição informada é 1.
+        /// Checa se o byte na posiÃ§Ã£o informada Ã© 1.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="idx"></param>
@@ -74,7 +74,7 @@ namespace OpenAC.Net.Core.Extensions
         public static bool IsBitOn(this byte value, int idx) => ((value >> idx) & 1) == 1;
 
         /// <summary>
-        /// Checa se o byte na posição informada é 0.
+        /// Checa se o byte na posiÃ§Ã£o informada Ã© 0.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="idx"></param>

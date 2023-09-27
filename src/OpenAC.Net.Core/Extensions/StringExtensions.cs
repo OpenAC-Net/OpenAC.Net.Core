@@ -563,7 +563,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Remove pontuaÁıes, espaÁos e traÁos de uma string, deixando apenas DÌgitos e Letras
+        /// Remove pontua√ß√µes, espa√ßos e tra√ßos de uma string, deixando apenas D√≠gitos e Letras
         /// </summary>
         /// <param name="str">String para processar.</param>
         /// <returns>System.String.</returns>
@@ -610,10 +610,10 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Checar se a string È um [CPF ou CNPJ] v·lido.
+        /// Checar se a string √© um [CPF ou CNPJ] v√°lido.
         /// </summary>
         /// <param name="cpfcnpj">CPFCNPJ</param>
-        /// <returns><c>true</c> se o [CPF ou CNPJ] È v·lido; sen„o, <c>false</c>.</returns>
+        /// <returns><c>true</c> se o [CPF ou CNPJ] √© v√°lido; sen√£o, <c>false</c>.</returns>
         public static bool IsCPFOrCNPJ(this string cpfcnpj)
         {
             var value = cpfcnpj.OnlyNumbers();
@@ -631,11 +631,11 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Checa se a string È um CPF v·lido.
+        /// Checa se a string √© um CPF v√°lido.
         /// </summary>
         /// <param name="vrCPF">CPF</param>
         /// <param name="ajustarTamanho">if set to <c>true</c> [ajustar tamanho].</param>
-        /// <returns><c>true</c> se o CPF for v·lido; sen„o, <c>false</c>.</returns>
+        /// <returns><c>true</c> se o CPF for v√°lido; sen√£o, <c>false</c>.</returns>
         /// <exception cref="System.Exception">Erro ao validar CPF</exception>
         /// <exception cref="Exception">Erro ao validar CPF</exception>
         public static bool IsCPF(this string vrCPF, bool ajustarTamanho = false)
@@ -695,11 +695,11 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Checa se a string È um CNPJ v·lido.
+        /// Checa se a string √© um CNPJ v√°lido.
         /// </summary>
         /// <param name="vrCNPJ">CNPJ.</param>
         /// <param name="ajustarTamanho">if set to <c>true</c> [ajustar tamanho].</param>
-        /// <returns><c>true</c> se o CNPJ for v·lido; sen„o, <c>false</c>.</returns>
+        /// <returns><c>true</c> se o CNPJ for v√°lido; sen√£o, <c>false</c>.</returns>
         /// <exception cref="System.Exception">Erro ao validar CNPJ</exception>
         /// <exception cref="Exception">Erro ao validar CNPJ</exception>
         public static bool IsCNPJ(this string vrCNPJ, bool ajustarTamanho = false)
@@ -1085,7 +1085,7 @@ namespace OpenAC.Net.Core.Extensions
                 var dvy = 0;
                 var I = 13;
 
-                //Verificando os digitos nas posicoes s„o permitidos
+                //Verificando os digitos nas posicoes s√£o permitidos
                 while (I >= 0)
                 {
                     d = fsDocto[13 - I];
@@ -1412,16 +1412,16 @@ namespace OpenAC.Net.Core.Extensions
         {
             try
             {
-                var emailRegex = @"^(([^<>()[\]\\.,;·‡„‚‰ÈËÍÎÌÏÓÔÛÚıÙˆ˙˘˚¸Á:\s@\""]+"
-                                 + @"(\.[^<>()[\]\\.,;·‡„‚‰ÈËÍÎÌÏÓÔÛÚıÙˆ˙˘˚¸Á:\s@\""]+)*)|(\"".+\""))@"
+                var emailRegex = @"^(([^<>()[\]\\.,;√°√†√£√¢√§√©√®√™√´√≠√¨√Æ√Ø√≥√≤√µ√¥√∂√∫√π√ª√º√ß:\s@\""]+"
+                                 + @"(\.[^<>()[\]\\.,;√°√†√£√¢√§√©√®√™√´√≠√¨√Æ√Ø√≥√≤√µ√¥√∂√∫√π√ª√º√ß:\s@\""]+)*)|(\"".+\""))@"
                                  + @"((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|"
                                  + @"(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
 
-                // Inst‚ncia da classe Regex, passando como
-                // argumento sua Express„o Regular
+                // Inst√¢ncia da classe Regex, passando como
+                // argumento sua Express√£o Regular
                 var rx = new Regex(emailRegex);
 
-                // MÈtodo IsMatch da classe Regex que retorna
+                // M√©todo IsMatch da classe Regex que retorna
                 // verdadeiro caso o e-mail passado estiver
                 // dentro das regras da sua regex.
                 return rx.IsMatch(email);
@@ -1437,8 +1437,8 @@ namespace OpenAC.Net.Core.Extensions
         /// </summary>
         /// <param name="site">The site.</param>
         /// <returns><c>true</c> if the specified site is site; otherwise, <c>false</c>.</returns>
-        /// <exception cref="System.Exception">Erro ao validar endereÁo web</exception>
-        /// <exception cref="Exception">Erro ao validar endereÁo web</exception>
+        /// <exception cref="System.Exception">Erro ao validar endere√ßo web</exception>
+        /// <exception cref="Exception">Erro ao validar endere√ßo web</exception>
         public static bool IsSite(this string site)
         {
             try
@@ -1451,15 +1451,15 @@ namespace OpenAC.Net.Core.Extensions
             }
             catch (Exception ex)
             {
-                throw new OpenException("Erro ao validar endereÁo web", ex);
+                throw new OpenException("Erro ao validar endere√ßo web", ex);
             }
         }
 
         /// <summary>
-        /// Verifica se a string È numerica.
+        /// Verifica se a string √© numerica.
         /// </summary>
         /// <param name="strNum">The string number.</param>
-        /// <returns>Retorna true/false se a string È numerica</returns>
+        /// <returns>Retorna true/false se a string √© numerica</returns>
         /// <exception cref="System.Exception">Erro ao validar string</exception>
         /// <exception cref="Exception">Erro ao validar string</exception>
         public static bool IsNumeric(this string strNum)
@@ -1479,7 +1479,7 @@ namespace OpenAC.Net.Core.Extensions
         /// Converte a string para UTF8.
         /// </summary>
         /// <param name="value">The text.</param>
-        /// <returns>Uma string com a codificaÁ„o UTF8</returns>
+        /// <returns>Uma string com a codifica√ß√£o UTF8</returns>
         /// <exception cref="System.Exception">Erro ao codificar string</exception>
         /// <exception cref="Exception">Erro ao codificar string</exception>
         public static string ToUtf8(this string value)
@@ -1522,7 +1522,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <param name="text">O texto</param>
         /// <param name="length">Tamanho final desejado</param>
         /// <param name="with">Caractere para preencher</param>
-        /// <param name="esquerda">DireÁ„o do preenchimento</param>
+        /// <param name="esquerda">Dire√ß√£o do preenchimento</param>
         /// <returns>String do tamanho especificado e se menor complementada com o caractere informado a direita/esquerda</returns>
         public static string StringFill(this string text, int length, char with = ' ', bool esquerda = true)
         {
@@ -1549,7 +1549,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Alinha a string a direita e preenche a esquerda com o caracter informado atÈ ficar do tamanho especificado.
+        /// Alinha a string a direita e preenche a esquerda com o caracter informado at√© ficar do tamanho especificado.
         /// Se tamanho menor que a string atual retorna uma string do tamanho especificado.
         /// </summary>
         /// <param name="text">O texto.</param>
@@ -1562,7 +1562,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Alinha a string a esquerda e preenche a direita com o caracter informado atÈ ficar do tamanho especificado.
+        /// Alinha a string a esquerda e preenche a direita com o caracter informado at√© ficar do tamanho especificado.
         /// Se tamanho menor que a string atual retorna uma string do tamanho especificado.
         /// </summary>
         /// <param name="text">O texto.</param>
@@ -1594,18 +1594,18 @@ namespace OpenAC.Net.Core.Extensions
         {
             if (value.IsEmpty()) return value;
 
-            value = Regex.Replace(value, "[·‡‚„™]", "a");
-            value = Regex.Replace(value, "[¡¿¬√ƒ]", "A");
-            value = Regex.Replace(value, "[ÈËÍÎ]", "e");
-            value = Regex.Replace(value, "[…» À]", "E");
-            value = Regex.Replace(value, "[ÌÏÓÔ]", "i");
-            value = Regex.Replace(value, "[ÕÃŒœ]", "I");
-            value = Regex.Replace(value, "[ÛÚÙıˆ∫]", "o");
-            value = Regex.Replace(value, "[”“‘’÷]", "O");
-            value = Regex.Replace(value, "[˙˘˚¸]", "u");
-            value = Regex.Replace(value, "[⁄Ÿ€‹]", "U");
-            value = Regex.Replace(value, "[«]", "C");
-            value = Regex.Replace(value, "[Á]", "c");
+            value = Regex.Replace(value, "[√°√†√¢√£¬™]", "a");
+            value = Regex.Replace(value, "[√Å√Ä√Ç√É√Ñ]", "A");
+            value = Regex.Replace(value, "[√©√®√™√´]", "e");
+            value = Regex.Replace(value, "[√â√à√ä√ã]", "E");
+            value = Regex.Replace(value, "[√≠√¨√Æ√Ø]", "i");
+            value = Regex.Replace(value, "[√ç√å√é√è]", "I");
+            value = Regex.Replace(value, "[√≥√≤√¥√µ√∂¬∫]", "o");
+            value = Regex.Replace(value, "[√ì√í√î√ï√ñ]", "O");
+            value = Regex.Replace(value, "[√∫√π√ª√º]", "u");
+            value = Regex.Replace(value, "[√ö√ô√õ√ú]", "U");
+            value = Regex.Replace(value, "[√á]", "C");
+            value = Regex.Replace(value, "[√ß]", "c");
             return value;
         }
 
@@ -1624,7 +1624,7 @@ namespace OpenAC.Net.Core.Extensions
                 var retorno = text.RemoveAccent();
                 var cEspeciais = new[] { "#39", "---", "--", "-", "'", "#", Environment.NewLine,
                                           "\n", "\r", ",", ".", "?", "&", ":", "/", "!", ";",
-                                          "%", "ë", "í", "(", ")", "\\", "î", "ì", "+", "É", "á" };
+                                          "%", "‚Äò", "‚Äô", "(", ")", "\\", "‚Äù", "‚Äú", "+", "∆í", "‚Ä°" };
 
                 retorno = retorno.ReplaceAny(cEspeciais, string.Empty);
                 return retorno.Trim();
@@ -1691,9 +1691,9 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Formata o n˙mero do CPF 92074286520 para 920.742.865-20
+        /// Formata o n√∫mero do CPF 92074286520 para 920.742.865-20
         /// </summary>
-        /// <param name="cpf">Sequencia numÈrica de 11 dÌgitos. Exemplo: 00000000000</param>
+        /// <param name="cpf">Sequencia num√©rica de 11 d√≠gitos. Exemplo: 00000000000</param>
         /// <returns>CPF formatado</returns>
         public static string FormataCPF(this string cpf)
         {
@@ -1710,7 +1710,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <summary>
         /// Formata o CNPJ. Exemplo 00.316.449/0001-63
         /// </summary>
-        /// <param name="cnpj">Sequencia numÈrica de 14 dÌgitos. Exemplo: 00000000000000</param>
+        /// <param name="cnpj">Sequencia num√©rica de 14 d√≠gitos. Exemplo: 00000000000000</param>
         /// <returns>CNPJ formatado</returns>
         public static string FormataCNPJ(this string cnpj)
         {
@@ -1727,7 +1727,7 @@ namespace OpenAC.Net.Core.Extensions
         /// <summary>
         /// Formato o CEP em 00.000-000
         /// </summary>
-        /// <param name="cep">Sequencia numÈrica de 8 dÌgitos. Exemplo: 00000000</param>
+        /// <param name="cep">Sequencia num√©rica de 8 d√≠gitos. Exemplo: 00000000</param>
         /// <returns>CEP formatado</returns>
         public static string FormataCEP(this string cep)
         {
@@ -1962,7 +1962,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Remove os espaÁos duplicados da string.
+        /// Remove os espa√ßos duplicados da string.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>System.String.</returns>
@@ -1972,7 +1972,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Confere se a string contÈm apenas caracteres hexadecimal.
+        /// Confere se a string cont√©m apenas caracteres hexadecimal.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -2007,7 +2007,7 @@ namespace OpenAC.Net.Core.Extensions
         }
 
         /// <summary>
-        /// Limita a string se necess·rio.
+        /// Limita a string se necess√°rio.
         /// </summary>
         /// <param name="txt"></param>
         /// <param name="length"></param>

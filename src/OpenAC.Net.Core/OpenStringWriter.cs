@@ -37,7 +37,7 @@ using System.Text;
 namespace OpenAC.Net.Core
 {
     /// <summary>
-    /// Classe derivada da StringWriter que aceita a mudanÁa de enconding e usa UTF8 como padr„o.
+    /// Classe derivada da StringWriter que aceita a mudan√ßa de enconding e usa UTF8 como padr√£o.
     /// </summary>
     public sealed class OpenStringWriter : StringWriter
     {

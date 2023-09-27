@@ -106,27 +106,27 @@ namespace OpenAC.Net.Core
         public TxtInfo Tipo { get; set; }
 
         /// <summary>
-        /// Define/retorna a ordem de inserÁ„o do dado.
+        /// Define/retorna a ordem de inser√ß√£o do dado.
         /// </summary>
         public int Ordem { get; set; }
 
         /// <summary>
-        /// Define/retorna o tamanho mÌnimo do campo.
+        /// Define/retorna o tamanho m√≠nimo do campo.
         /// </summary>
         public int Minimo { get; set; }
 
         /// <summary>
-        /// Define/retorna o tamanho m·ximo do campo.
+        /// Define/retorna o tamanho m√°ximo do campo.
         /// </summary>
         public int Maximo { get; set; }
 
         /// <summary>
-        /// Define/retorna se o campo È obrigatÛrio.
+        /// Define/retorna se o campo √© obrigat√≥rio.
         /// </summary>
         public bool Obrigatorio { get; set; }
 
         /// <summary>
-        /// Define/retorna a partir da da onde sera feito o preenchimento em caso do valor sem menor que o mÌnimo.
+        /// Define/retorna a partir da da onde sera feito o preenchimento em caso do valor sem menor que o m√≠nimo.
         /// </summary>
         public TxtFill Preenchimento { get; set; }
 
@@ -136,12 +136,12 @@ namespace OpenAC.Net.Core
         public char CaracterPreenchimento { get; set; }
 
         /// <summary>
-        /// Define/retorna a quantidade de digitos decimais em caso de valor numÈrico.
+        /// Define/retorna a quantidade de digitos decimais em caso de valor num√©rico.
         /// </summary>
         public int QtdDecimais { get; set; }
 
         /// <summary>
-        /// Define/retorna o separador decimal utilizado em caso de valor numÈrico com decimais
+        /// Define/retorna o separador decimal utilizado em caso de valor num√©rico com decimais
         /// </summary>
         public char SeparadorDecimal { get; set; }
 

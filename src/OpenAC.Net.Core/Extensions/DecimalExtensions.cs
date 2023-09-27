@@ -48,27 +48,27 @@ namespace OpenAC.Net.Core.Extensions
                 {"Real", "Reais"},
                 {"e", "de"},
                 {"Mil", "Mil"},
-                {"Milh„o", "Milhıes"},
-                {"Bilh„o", "Bilhıes"},
-                {"Trilh„o", "Trilhıes"},
-                {"Quatrilh„o", "Quatrilhıes"},
-                {"Quintilh„o", "Quintilhıes"},
-                {"Sextilh„o", "Sextilhıes"},
-                {"Setilh„o", "Setilhıes"},
-                {"Octilh„o","Octilhıes"},
-                {"Nonilh„o","Nonilhıes"},
-                {"Decilh„o","Decilhıes"}
+                {"Milh√£o", "Milh√µes"},
+                {"Bilh√£o", "Bilh√µes"},
+                {"Trilh√£o", "Trilh√µes"},
+                {"Quatrilh√£o", "Quatrilh√µes"},
+                {"Quintilh√£o", "Quintilh√µes"},
+                {"Sextilh√£o", "Sextilh√µes"},
+                {"Setilh√£o", "Setilh√µes"},
+                {"Octilh√£o","Octilh√µes"},
+                {"Nonilh√£o","Nonilh√µes"},
+                {"Decilh√£o","Decilh√µes"}
         };
 
         /// <summary>
         /// The numeros
         /// </summary>
         private static readonly String[,] Numeros = {
-                {"Zero", "Um", "Dois", "TrÍs", "Quatro",
+                {"Zero", "Um", "Dois", "Tr√™s", "Quatro",
                  "Cinco", "Seis", "Sete", "Oito", "Nove",
                  "Dez","Onze", "Doze", "Treze", "Quatorze",
                  "Quinze", "Dezesseis", "Dezessete", "Dezoito", "Dezenove"},
-                {"Vinte", "Trinta", "Quarenta", "Cinq¸enta", "Sessenta",
+                {"Vinte", "Trinta", "Quarenta", "Cinq√ºenta", "Sessenta",
                  "Setenta", "Oitenta", "Noventa",null,null,null,null,null,null,null,null,null,null,null,null},
                 {"Cem", "Cento", "Duzentos", "Trezentos", "Quatrocentos", "Quinhentos", "Seiscentos",
                  "Setecentos", "Oitocentos", "Novecentos",null,null,null,null,null,null,null,null,null,null}
@@ -179,7 +179,7 @@ namespace OpenAC.Net.Core.Extensions
             }
             else if (valor >= 1000000000000000)
             {
-                return "Valor n„o suportado pelo sistema.";
+                return "Valor n√£o suportado pelo sistema.";
             }
 
             #region Function EscrevaParte

@@ -34,7 +34,7 @@ using System;
 namespace OpenAC.Net.Core.Extensions
 {
     /// <summary>
-    /// Classe com mÈtodos de extens„o para arrays.
+    /// Classe com m√©todos de extens√£o para arrays.
     /// </summary>
     public static class ArrayExtensions
     {

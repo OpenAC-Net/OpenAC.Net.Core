@@ -101,7 +101,7 @@ namespace OpenAC.Net.Core
         #region Methods
 
         /// <summary>
-        /// Retorna true se a seção existir no ini.
+        /// Retorna true se a seÃ§Ã£o existir no ini.
         /// </summary>
         /// <param name="section"></param>
         /// <returns></returns>
