@@ -1,5 +1,4 @@
 using OpenAC.Net.Core.Extensions;
-using Xunit;
 
 namespace OpenAC.Net.Core.Tests
 {

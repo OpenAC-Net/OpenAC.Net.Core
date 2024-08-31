@@ -1,7 +1,3 @@
-using System;
-using System.IO;
-using Xunit;
-
 namespace OpenAC.Net.Core.Tests
 {
     public class OpenTxtWriterTest

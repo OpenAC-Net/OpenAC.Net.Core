@@ -28,6 +28,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using OpenAC.Net.Core.Extensions;
 using System;
 using System.Configuration;
